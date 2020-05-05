@@ -18,7 +18,7 @@ public class CountryController {
     @Autowired
     CountryService countryService;
 
-    @GetMapping()
+    @GetMapping("/")
     public List<Country> getAll() {
         System.out.println("Inside Country Controller");
 
