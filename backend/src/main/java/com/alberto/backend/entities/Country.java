@@ -18,7 +18,7 @@ public class Country {
     @Column
     private String name;
     @OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<TerritorialAdministrativeEntity> territories;
+    private Set<AdministrativeDemarcation> demarcations;
 
     public Country(int id, String name) {
         super();
@@ -42,11 +42,11 @@ public class Country {
         this.name = name;
     }
 
-    public Set<TerritorialAdministrativeEntity> getTerritories() {
-        return territories;
+    public Set<AdministrativeDemarcation> getAdministrativeDemarcations() {
+        return demarcations;
     }
 
-    public void setTerritories(Set<TerritorialAdministrativeEntity> territories) {
-        this.territories = territories;
+    public void setTerritories(Set<AdministrativeDemarcation> demarcations) {
+        this.demarcations = demarcations;
     }
 }

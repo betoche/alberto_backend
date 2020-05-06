@@ -11,7 +11,7 @@ import org.springframework.lang.NonNull;
 
 @Entity
 @Inheritance
-public abstract class TerritorialAdministrativeEntity {
+public abstract class AdministrativeDemarcation {
     @Id
     private int id;
     @NonNull
@@ -20,7 +20,7 @@ public abstract class TerritorialAdministrativeEntity {
     @JoinColumn(name = "country_id", nullable = false)
     private Country country;
     
-	public TerritorialAdministrativeEntity(int id, String name, Country country) {
+	public AdministrativeDemarcation(int id, String name, Country country) {
         this.id = id;
         this.name = name;
 	}
