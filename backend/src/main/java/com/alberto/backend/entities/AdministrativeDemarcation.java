@@ -2,10 +2,14 @@ package com.alberto.backend.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.lang.NonNull;
 
@@ -13,17 +17,23 @@ import org.springframework.lang.NonNull;
 @Inheritance
 public abstract class AdministrativeDemarcation {
     @Id
+    @GeneratedValue
     private int id;
     @NonNull
     private String name;
+    
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "country_id", nullable = false)
+    @JsonIgnore
     private Country country;
     
 	public AdministrativeDemarcation(int id, String name, Country country) {
         this.id = id;
         this.name = name;
 	}
+
+    public AdministrativeDemarcation() {
+    }
 
     public int getId() {
         return id;

@@ -1,9 +1,12 @@
 package com.alberto.backend.services;
 
-import com.alberto.backend.entities.Department;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.alberto.backend.entities.AdministrativeDemarcation;
-import com.alberto.backend.repositories.DepartmentRepository;
+import com.alberto.backend.entities.Country;
 import com.alberto.backend.repositories.AdministrativeDemarcationRepository;
+import com.alberto.backend.repositories.CountryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,17 +14,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdministrativeDemarcationService {
     @Autowired
-    private AdministrativeDemarcationRepository territoryRepo;
+    private CountryRepository countryRepo;
     @Autowired
-    private DepartmentRepository departmentRepo;
+    private AdministrativeDemarcationRepository demarcationRepo;
 
-    public Department addDepartment( Department department ){
-        department = departmentRepo.save(department);
-        return department;
+    public AdministrativeDemarcation addDemarcation( AdministrativeDemarcation demarcation ){
+        Country country = countryRepo.findById(demarcation.getCountry().getId()).orElse(null);
+        if( country == null ){
+            country = new Country();
+        }
+        country.setName(demarcation.getCountry().getName());
+        demarcation.setCountry(country);
+
+        return demarcationRepo.save(demarcation);
     }
 
-    public AdministrativeDemarcation addTerritory( AdministrativeDemarcation territory ){
-        territory = territoryRepo.save(territory);
-        return territory;
+    public List<AdministrativeDemarcation> getAllDemarcations() {
+        List<AdministrativeDemarcation> demarcationList = new ArrayList<AdministrativeDemarcation>();
+        demarcationRepo.findAll().forEach(demarcationList::add);
+
+        return demarcationList;
     }
 }

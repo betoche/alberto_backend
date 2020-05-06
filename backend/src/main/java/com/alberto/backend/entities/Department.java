@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 @Entity
 public class Department extends AdministrativeDemarcation {
 
+    public Department(){
+        super();
+    }
     public Department(int id, String name, Country country) {
         super(id, name, country);
     }
