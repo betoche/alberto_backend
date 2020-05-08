@@ -1,7 +1,5 @@
 package com.alberto.backend.controllers;
 
-import java.util.List;
-
 import com.alberto.backend.entities.Country;
 import com.alberto.backend.entities.Department;
 import com.alberto.backend.services.CountryService;
