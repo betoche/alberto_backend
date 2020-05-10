@@ -13,12 +13,14 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 
 import org.springframework.lang.NonNull;
 
 @Entity
 public class MeasurementUnit {
     @Id
+    @GeneratedValue
     private int id;
     @NonNull
     private String name;
@@ -27,7 +29,7 @@ public class MeasurementUnit {
     @JoinColumn(name = "base_unit_id", nullable = false)
     @JsonIgnore
     private BaseUnit baseUnit;
-    @OneToOne(mappedBy = "defaultMeasurementUnit", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "defaultMeasurementUnit", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private BaseUnit defaultBaseUnit;
     @OneToMany(mappedBy = "measurementUnit", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Consumption> consumptions;
@@ -36,6 +38,7 @@ public class MeasurementUnit {
     public MeasurementUnit(){}
 
     public MeasurementUnit(int id, String name, String abbreviation, BaseUnit baseUnit) {
+        super();
         this.id = id;
         this.name = name;
         this.abbreviation = abbreviation;
