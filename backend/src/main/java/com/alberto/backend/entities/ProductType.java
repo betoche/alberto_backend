@@ -1,27 +1,31 @@
 package com.alberto.backend.entities;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Brand {
+public class ProductType {
     @Id
     @GeneratedValue
     private int id;
     private String name;
-    @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<ProductType> productTypes;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "brand_id", nullable = false)
+    @JsonIgnore
+    private Brand brand;
 
-    public Brand() {}
-    public Brand(int id, String name) {
+    public ProductType(){}
+
+    public ProductType(int id, String name, Brand brand) {
         this.id = id;
         this.name = name;
+        this.brand = brand;
     }
 
     public int getId() {
@@ -40,11 +44,11 @@ public class Brand {
         this.name = name;
     }
 
-    public Set<ProductType> getProductTypes() {
-        return productTypes;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setProductTypes(Set<ProductType> productTypes) {
-        this.productTypes = productTypes;
-    }   
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }       
 }
