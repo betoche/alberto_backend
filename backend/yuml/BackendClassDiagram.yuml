@@ -24,4 +24,4 @@
 [User]^[Person]
 [User]^[Company]
 [User]1-*[Budget]
-[Currency]1-*>[ConversionRate{bg:MistyRose}]
+[Currency]1-*>[ConversionRate]
