@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.lang.NonNull;
 
@@ -27,7 +28,15 @@ public class Currency {
     @JsonIgnore
     private Country country;
     @OneToMany(mappedBy = "currency", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Consumption> consumptions;
+
+    @OneToMany(mappedBy = "originCurrency", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<ConversionRate> originCurrencies;
+    @OneToMany(mappedBy = "destinationCurrency", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<ConversionRate> destinationCurrencies;
 
     public Currency(){}
 
@@ -86,4 +95,21 @@ public class Currency {
     public void setConsumptions(Set<Consumption> consumptions) {
         this.consumptions = consumptions;
     }
+
+    public Set<ConversionRate> getOriginCurrencies() {
+        return originCurrencies;
+    }
+
+    public void setOriginCurrencies(Set<ConversionRate> originCurrencies) {
+        this.originCurrencies = originCurrencies;
+    }
+
+    public Set<ConversionRate> getDestinationCurrencies() {
+        return destinationCurrencies;
+    }
+
+    public void setDestinationCurrencies(Set<ConversionRate> destinationCurrencies) {
+        this.destinationCurrencies = destinationCurrencies;
+    }
+
 }
