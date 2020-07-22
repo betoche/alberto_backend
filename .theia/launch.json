@@ -4,17 +4,24 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "java",
-      "name": "Debug (Launch) - Current File",
-      "request": "launch",
-      "mainClass": "${file}"
+        "type": "java",
+        "name": "CodeLens (Launch) - RepeatedElement",
+        "request": "launch",
+        "mainClass": "com.alberto.backend.controllers.RepeatedElement",
+        "projectName": "backend"
     },
     {
-      "type": "java",
-      "name": "Debug (Launch)-DemoApplication<backend>",
-      "request": "launch",
-      "mainClass": "com.alberto.backend.DemoApplication",
-      "projectName": "backend"
+        "type": "java",
+        "name": "Debug (Launch) - Current File",
+        "request": "launch",
+        "mainClass": "${file}"
+    },
+    {
+        "type": "java",
+        "name": "Debug (Launch)-DemoApplication<backend>",
+        "request": "launch",
+        "mainClass": "com.alberto.backend.DemoApplication",
+        "projectName": "backend"
     }
-  ]
+]
 }

@@ -28,7 +28,7 @@ public class BrandService {
         return brand;
     }
 
-    public Brand updateBrand( Brand brand ){
+    public Brand updateBrand( Brand brand ) {
         brand = brandRepo.save(brand);
 
         return brand;

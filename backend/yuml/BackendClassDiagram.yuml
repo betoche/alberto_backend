@@ -1,5 +1,5 @@
 // {type:class}
-//{direction:topDown}
+// {direction:topDown}
 
 [AdministrativeDemarcation]^[Department]
 [AdministrativeDemarcation]^[Region{bg:MistyRose}]
@@ -8,9 +8,11 @@
 [AdministrativeDemarcation]1-*[User]
 [BaseUnit]1-*>[MeasurementUnit]
 [Brand]1-*>[ProductType]
-[Budget{bg:MistyRose}]1-*[BudgetDetail]
-[BudgetDetail{bg:MistyRose}]1-*[Product{bg:MistyRose}]
-[BudgetDetail{bg:MistyRose}]1-*[Service{bg:MistyRose}]
+[Brand]1-*>[Service]
+[Budget{bg:MistyRose}]1-*[BudgetClassificationDetail]
+[BudgetClassification]1-*>[BudgetClassificationDetail]
+[BudgetClassificationDetail{bg:MistyRose}]1-*[BudgetConsumptionDetail]
+[BudgetConsumptionDetail{bg:MistyRose}]1-*[Consumption{bg:MistyRose}]
 [Country]1-*>[AdministrativeDemarcation]
 [Country]1-1>[Currency]
 [Country]*-*>[Currency]
@@ -18,9 +20,12 @@
 [Consumption]^[Service]
 [Currency]*-*>[Product]
 [Currency]*-*>[Service]
-[MeasurementUnit]1-*[Product]
-[MeasurementUnit]1-*[Service]
-[ProductType]1-*[Product]
+[Currency]1-*>[BudgetClassificationDetail]
+[MeasurementUnit]1-*>[Product]
+[MeasurementUnit]1-*>[Service]
+[ProductType]1-*>[Product]
+[Product]1-*>[ProductDetail]
+[Service]1-*>[ServiceDetail]
 [User]^[Person]
 [User]^[Company]
 [User]1-*[Budget]

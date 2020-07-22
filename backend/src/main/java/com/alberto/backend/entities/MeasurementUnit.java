@@ -34,7 +34,6 @@ public class MeasurementUnit {
     @OneToMany(mappedBy = "measurementUnit", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Consumption> consumptions;
     
-
     public MeasurementUnit(){}
 
     public MeasurementUnit(int id, String name, String abbreviation, BaseUnit baseUnit) {
